@@ -1,0 +1,17 @@
+{
+  "name": "voting-chaincode",
+  "version": "1.0.0",
+  "description": "Hyperledger Fabric chaincode for voting system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fabric-contract-api": "^2.2.3",
+    "fabric-shim": "^2.2.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
+

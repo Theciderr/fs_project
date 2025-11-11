@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  ganache:
+    image: trufflesuite/ganache-cli:latest
+    ports:
+      - "8545:8545"
+    command: -d -i 1337 --deterministic
+    networks:
+      - voting-network
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - voting-network
+    environment:
+      - MONGO_INITDB_DATABASE=voting
+
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - MONGO_URI=mongodb://mongo:27017/voting
+      - LEDGER_TYPE=EVM
+      - EVM_RPC_URL=http://ganache:8545
+      - EVM_PRIVATE_KEY=${EVM_PRIVATE_KEY:-}
+      - EVM_CONTRACT_ADDRESS=${EVM_CONTRACT_ADDRESS:-}
+      - JWT_SECRET=${JWT_SECRET:-secret}
+    depends_on:
+      - ganache
+      - mongo
+    networks:
+      - voting-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:3001
+    depends_on:
+      - backend
+    networks:
+      - voting-network
+
+networks:
+  voting-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+

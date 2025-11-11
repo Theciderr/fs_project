@@ -1,0 +1,17 @@
+{
+  "name": "voting-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for voting system",
+  "scripts": {
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "test": "truffle test"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.15"
+  },
+  "devDependencies": {
+    "truffle": "^5.11.5"
+  }
+}
+
