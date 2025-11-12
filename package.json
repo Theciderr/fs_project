@@ -18,10 +18,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "REPLACE_WITH_REMOTE_URL"
+    "url": "https://github.com/Theciderr/fs_project.git"
   },
   "bugs": {
-    "url": "REPLACE_WITH_ISSUES_URL"
+    "url": "https://github.com/Theciderr/fs_project/issues"
   },
-  "homepage": "REPLACE_WITH_HOMEPAGE_URL"
+  "homepage": "https://github.com/Theciderr/fs_project#readme"
 }
